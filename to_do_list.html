@@ -19,26 +19,26 @@
 <body>
     <div class="container-wrapper">
         <div class="container">
-            <div>
+            <div class="header">
                 <h2 class="title" id="title">To do list</h2>
                 <p id="today"></p>
             </div>
+            <div class="write-wrapper" id="write-wrapper">
+                <img src="check.png" alt="체크표시" id="check-img">
+                <input type="text" id="insert-text" class="insert-text" onkeyup="enterEvent()" placeholder="할 일을 작성하세요" >
+            </div>
             <ul class="content" id="content">
-                <input type="text" id="insert-text" class="insert-text" placeholder="할 일을 작성하세요">
                 <li>
                     <div class="text-list" id="text-list">
-                        <label for="chkbox">
-                            <input type="checkbox" id="chkbox" class="chkbox">
-                        </label>
-                        <p class="text-result"></p>
+                        <input type="checkbox" id="chkbox" class="chkbox">
+                        <p class="text-result" id="text-result" onclick="delLine()"></p>
                     </div>
-
                 </li>
             </ul>
             <div class="btn">
                 <button class="insert-btn" id="insert-btn" onclick="openMemo()">입력</button>
-                <button class="add-btn" id="add-btn">추가</button>
-                <button class="save-btn" id="save-btn">저장</button>
+                <button class="add-btn" id="add-btn" onclick="addMemo()">추가</button>
+                <!-- <button class="save-btn" id="save-btn">저장</button> -->
                 <button class="delete-btn" id="delete-btn">삭제</button>
             </div>
         </div>

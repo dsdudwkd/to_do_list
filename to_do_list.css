@@ -1,25 +1,48 @@
-.container-wrapper{
-    width:500px;
+.container-wrapper {
+    width: 500px;
     margin: 50px auto;
     padding: 30px;
     background-color: rgb(219, 162, 141);
     border-radius: 30px;
 }
-.container{
+
+.container {
     width: 100%;
 }
-.title{
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: first baseline;
+    /* align-items: center; */
+}
+.title {
     font-size: 50px;
     font-family: 'Agbalumo', 'Playpen Sans';
     font-weight: 600;
     color: #ffffff;
+    margin-bottom: 50px;
 }
-.content{
-    margin: 50px 0;
+#today {
+    font-size: 20px;
+    font-family: 'Agbalumo', 'Playpen Sans';
+    font-weight: 600;
+    color: #ffffff;
 }
-.insert-text{
+
+.write-wrapper {
+    /* display: flex; */
     display: none;
-    width: 100%;
+    align-items: center;
+    margin-bottom: 40px;
+}
+#check-img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.insert-text {
+    width: 90%;
     border: none;
     border-bottom: 2px solid #ffffff;
     background-color: inherit;
@@ -28,22 +51,46 @@
     font-weight: 500;
     font-family: 'Noto Sans KR', 'Agbalumo', 'Playpen Sans';
     outline: none;
+    /* input창 포커스 시에 테두리 없애기 */
     margin: 0 auto;
 }
-.text-list{
+/* input창 포커스 시에 placeholder 없애기 */
+.insert-text:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+.insert-text:focus::-moz-placeholder {
+    color: transparent;
+}
+.insert-text:focus:-ms-input-placeholder {
+    color: transparent;
+}
+.insert-text:focus::-ms-input-placeholder {
+    color: transparent;
+}
+
+.text-list {
     display: none;
     align-items: center;
     gap: 10px;
-    margin-top: 20px;
+    margin: 20px 0;
 }
-#chkbox{
-    border: none;
-    border-radius: 100%;
+.text-result {
+    color: #ffffff;
+    font-family: 'Noto Sans KR', 'Agbalumo', 'Playpen Sans';
+    display: inline;
+    cursor: pointer;
+    font-size: 20px;
 }
-.btn{
+/* 삭제 줄 표시 */
+.del-line{
+    text-decoration: line-through;
+    font-style: italic;
+}
+
+.btn {
     text-align: center;
 }
-.btn button{
+.btn button {
     border: none;
     border-radius: 12px;
     padding: 10px;
@@ -56,7 +103,6 @@
     cursor: pointer;
     display: none;
 }
-.btn #insert-btn{
+.btn #insert-btn {
     display: inline-block;
 }
-

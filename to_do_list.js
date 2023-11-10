@@ -51,6 +51,14 @@ window.onload = () => {
         if (insert_text.value.trim() == '') {
             alert('할 일을 입력해주세요');
         } else {
+            const li = document.createElement('li');
+            const cloneNode = text_list.cloneNode(true);
+            li.appendChild(cloneNode);
+            const content = document.getElementById('content');
+            content.appendChild(li);
+
+            console.log(content);
+            console.log(content.lastChild);
             text_list.style.display = 'block';
             text_result.innerHTML = insert_text.value;
             insert_text.value = '';

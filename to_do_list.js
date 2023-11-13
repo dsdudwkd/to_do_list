@@ -52,16 +52,22 @@ window.onload = () => {
             alert('할 일을 입력해주세요');
         } else {
             const li = document.createElement('li');
-            const cloneNode = text_list.cloneNode(true);
-            li.appendChild(cloneNode);
+            li.setAttribute('id', 'li');
+
+            const text_result = document.createElement('p');
+            text_result.setAttribute('class', 'text-result');
+            text_result.setAttribute('id', 'text-result');
+            text_result.setAttribute('onClick', 'delLine()');
+            
+            // const cloneNode = text_list.cloneNode(true);
+            li.appendChild(text_result);
             const content = document.getElementById('content');
             content.appendChild(li);
 
-            console.log(content);
-            console.log(content.lastChild);
-            text_list.style.display = 'block';
+            // text_list.style.display = 'block';
             text_result.innerHTML = insert_text.value;
             insert_text.value = '';
+            
         }
 
         
@@ -74,23 +80,28 @@ window.onload = () => {
         }
     }
 
+    
 
     /* 삭제줄 표시 */
     delLine = () => {
         
-        if(text_result.classList.contains('del-line')){
-            text_result.classList.remove('del-line');
-        }else{
-            text_result.classList.add('del-line');
-        }
+        const text_num = document.getElementsByTagName('li').length;
+        // console.log(text_num);
+        
+        
+            const text = document.querySelectorAll('.text-result');
+            console.log(this);
+
+            text.forEach((el)=>el.addEventListener('click', function(){
+                console.log(el);
+                if(el.classList.contains('del-line')){
+                    el.classList.remove('del-line');
+                }else{
+                    el.classList.add('del-line');
+                }
+                
+            }) )
+            
     }
-
-
-
-
-
-
-
-
 
 }

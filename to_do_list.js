@@ -1,12 +1,10 @@
 window.onload = () => {
 
     const write_wrapper = document.getElementById('write-wrapper');
-    const text_list = document.getElementById('text-list');
     const insert_text = document.getElementById('insert-text');
     const button = document.getElementsByTagName('button');
     const insert_btn = document.getElementById('insert-btn');
-    const text_result = document.getElementById('text-result');
-    
+
     const new_date = new Date();
     // console.log(new_date);
 
@@ -54,23 +52,47 @@ window.onload = () => {
             const li = document.createElement('li');
             li.setAttribute('id', 'li');
 
+            const text_list = document.createElement('div');
+            text_list.setAttribute('class', 'text-list');
+
+            const chkBox = document.createElement('input');
+            chkBox.setAttribute('type', 'checkbox');
+            chkBox.setAttribute('class', 'chkBox');
+
             const text_result = document.createElement('p');
             text_result.setAttribute('class', 'text-result');
             text_result.setAttribute('id', 'text-result');
-            text_result.setAttribute('onClick', 'delLine()');
-            
-            // const cloneNode = text_list.cloneNode(true);
-            li.appendChild(text_result);
+
+            text_list.appendChild(chkBox);
+            text_list.appendChild(text_result);
+
+
+            li.appendChild(text_list);
             const content = document.getElementById('content');
             content.appendChild(li);
 
-            // text_list.style.display = 'block';
+            text_list.style.display = 'block';
             text_result.innerHTML = insert_text.value;
             insert_text.value = '';
-            
-        }
 
-        
+            /* 삭제줄 표시 */
+            text_result.addEventListener('click', () => {
+                if (text_result.classList.contains('del-line')) {
+                    text_result.classList.remove('del-line');
+                } else {
+                    text_result.classList.add('del-line');
+                }
+            });
+
+            /* 체크박스 전부 체크 or 해제 */
+            const allChecked = document.getElementById('check-img');
+            const checkBox = document.querySelectorAll('input[type=checkbox]');
+            console.log(checkBox);
+            allChecked.addEventListener('click', () => {
+                
+               chkBox.toggleAttribute('checked');
+            })
+        }
     }
 
     /* 엔터키 이벤트 */
@@ -80,28 +102,6 @@ window.onload = () => {
         }
     }
 
-    
 
-    /* 삭제줄 표시 */
-    delLine = () => {
-        
-        const text_num = document.getElementsByTagName('li').length;
-        // console.log(text_num);
-        
-        
-            const text = document.querySelectorAll('.text-result');
-            console.log(this);
-
-            text.forEach((el)=>el.addEventListener('click', function(){
-                console.log(el);
-                if(el.classList.contains('del-line')){
-                    el.classList.remove('del-line');
-                }else{
-                    el.classList.add('del-line');
-                }
-                
-            }) )
-            
-    }
 
 }

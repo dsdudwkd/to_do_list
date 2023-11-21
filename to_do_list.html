@@ -24,7 +24,7 @@
                 <p id="today"></p>
             </div>
             <div class="write-wrapper" id="write-wrapper">
-                <img src="check.png" alt="체크표시" id="check-img">
+                <img src="check.png" alt="체크표시" id="check-img" onclick="allChecked()">
                 <input type="text" id="insert-text" class="insert-text" onkeyup="enterEvent()" placeholder="할 일을 작성하세요">
             </div>
             <ul class="content" id="content"></ul>
@@ -34,9 +34,9 @@
             </div> -->
             <div class="btn">
                 <button class="insert-btn" id="insert-btn" onclick="openMemo()">입력</button>
-                <button class="add-btn" id="add-btn" onclick="addMemo()">추가</button>
+                <button class="add-btn" id="add-btn" onclick="addText()">추가</button>
                 <!-- <button class="save-btn" id="save-btn">저장</button> -->
-                <button class="delete-btn" id="delete-btn">삭제</button>
+                <button class="delete-btn" id="delete-btn" onclick="checkDelete()">삭제</button>
             </div>
         </div>
     </div>

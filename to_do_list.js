@@ -44,8 +44,10 @@ window.onload = () => {
         insert_btn.style.display = 'none';
     }
 
+
+
     /* 추가 버튼 눌렀을 때 */
-    addMemo = () => {
+    addText = () => {
         if (insert_text.value.trim() == '') {
             alert('할 일을 입력해주세요');
         } else {
@@ -63,8 +65,15 @@ window.onload = () => {
             text_result.setAttribute('class', 'text-result');
             text_result.setAttribute('id', 'text-result');
 
+            const change_text = document.createElement('button');
+            change_text.innerHTML = '수정';
+            change_text.setAttribute('class', 'changeBtn');
+            change_text.addEventListener('click', changeText);
+
+
             text_list.appendChild(chkBox);
             text_list.appendChild(text_result);
+            text_list.appendChild(change_text);
 
 
             li.appendChild(text_list);
@@ -84,21 +93,43 @@ window.onload = () => {
                 }
             });
 
-            /* 체크박스 전부 체크 or 해제 */
-            const allChecked = document.getElementById('check-img');
-            const checkBox = document.querySelectorAll('input[type=checkbox]');
-            console.log(checkBox);
-            allChecked.addEventListener('click', () => {
-                
-               chkBox.toggleAttribute('checked');
-            })
+
+
+
         }
+    }
+
+    /* 문장 수정 */
+    changeText = () => {
+        console.log('수정')
+    }
+
+
+    /* 체크된 문장 삭제 */
+    checkDelete = () => {
+        const checkBox = document.querySelectorAll('.chkBox');
+        const text_list = document.getElementsByClassName('text-list');
+        // console.log(text_list);
+        checkBox.forEach((el, index) => {
+            if (el.checked == true) {
+                text_list[index].style.display = 'none';
+            }
+        })
+    }
+
+    /* 체크박스 전부 체크 or 해제 */
+    allChecked = () => {
+        const checkBox = document.querySelectorAll('.chkBox');
+        let allChecked = Array.from(checkBox).every(el => el.checked);
+        const checkedCount = document.querySelectorAll('input[type=checkbox]:checked').length;
+
+        checkBox.forEach(el => el.checked = !allChecked);
     }
 
     /* 엔터키 이벤트 */
     enterEvent = () => {
         if (window.event.keyCode == '13') {
-            addMemo();
+            addText();
         }
     }
 

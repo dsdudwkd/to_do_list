@@ -48,6 +48,7 @@ window.onload = () => {
 
     /* 추가 버튼 눌렀을 때 */
     addText = () => {
+
         if (insert_text.value.trim() == '') {
             alert('할 일을 입력해주세요');
         } else {
@@ -57,23 +58,27 @@ window.onload = () => {
             const text_list = document.createElement('div');
             text_list.setAttribute('class', 'text-list');
 
+            /* 체크박스 */
             const chkBox = document.createElement('input');
             chkBox.setAttribute('type', 'checkbox');
             chkBox.setAttribute('class', 'chkBox');
 
+            /* 입력한 문장 */
             const text_result = document.createElement('p');
             text_result.setAttribute('class', 'text-result');
             text_result.setAttribute('id', 'text-result');
+            text_result.addEventListener('dblclick', changeText);
 
-            const change_text = document.createElement('button');
-            change_text.innerHTML = '수정';
-            change_text.setAttribute('class', 'changeBtn');
-            change_text.addEventListener('click', changeText);
+            /* 완료버튼 */
+            const complete_btn = document.createElement('button');
+            complete_btn.innerHTML = '완료';
+            complete_btn.setAttribute('class', 'complete-btn');
+            complete_btn.addEventListener('click', completeText);
 
 
             text_list.appendChild(chkBox);
             text_list.appendChild(text_result);
-            text_list.appendChild(change_text);
+            text_list.appendChild(complete_btn);
 
 
             li.appendChild(text_list);
@@ -84,35 +89,47 @@ window.onload = () => {
             text_result.innerHTML = insert_text.value;
             insert_text.value = '';
 
-            /* 삭제줄 표시 */
-            text_result.addEventListener('click', () => {
-                if (text_result.classList.contains('del-line')) {
-                    text_result.classList.remove('del-line');
-                } else {
-                    text_result.classList.add('del-line');
-                }
-            });
+        }
 
+    }
 
+    /* 완료 문장 삭제줄 표시 */
+    completeText = (e) => {
+        const text_result = e.target.previousSibling;
 
-
+        if (text_result.classList.contains('del-line')) {
+            text_result.classList.remove('del-line');
+        } else {
+            text_result.classList.add('del-line');
         }
     }
 
     /* 문장 수정 */
-    changeText = () => {
-        console.log('수정')
-    }
+    changeText = (e) => {
+        const text_list = document.getElementsByClassName('text-list');
+        insert_text.value = e.target.innerHTML;
 
+
+        insert_text.addEventListener('change', (event) => {
+           e.target.innerHTML = event.target.value;
+           
+        })
+        
+    }
 
     /* 체크된 문장 삭제 */
     checkDelete = () => {
         const checkBox = document.querySelectorAll('.chkBox');
         const text_list = document.getElementsByClassName('text-list');
-        // console.log(text_list);
-        checkBox.forEach((el, index) => {
+        const text_result = document.querySelectorAll('.text-result');
+
+        if (text_list.length == 0) {
+            confirm('삭제할 리스트가 없습니다.');
+        }
+
+        checkBox.forEach((el) => {
             if (el.checked == true) {
-                text_list[index].style.display = 'none';
+                el.parentElement.remove();
             }
         })
     }
@@ -131,6 +148,7 @@ window.onload = () => {
         if (window.event.keyCode == '13') {
             addText();
         }
+
     }
 
 
